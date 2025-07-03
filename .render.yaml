@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: gift-api
+    runtime: python
+    buildCommand: ""
+    startCommand: uvicorn main:app --host 0.0.0.0 --port 10000
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: gift-db
+          property: connectionString
+
+databases:
+  - name: gift-db
+    databaseName: gifts
+    user: gift_user
